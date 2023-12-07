@@ -2,7 +2,7 @@
 
 Project was created by **Edalov Andrew**
 
-## Group DSBA232-2
+## Group DSBA 232-2
 
 ### Link to the project
 
