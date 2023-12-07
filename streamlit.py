@@ -63,7 +63,7 @@ st.title('Airline Passenger Satisfaction')
 
 #Sidebar
 sidebar = st.sidebar
-selected_option = st.sidebar.selectbox('Select Visualization', ["Info",'Histograms', 'Age Distribution', 'Correlation', 'Pie Charts'])
+selected_option = st.sidebar.selectbox('Select', ["Info",'Histograms', 'Age Distribution', 'Correlation', 'Pie Charts'])
 if selected_option == "Info":
     st.markdown("Dataset contains an airline passenger satisfaction survey.")
     st.subheader("Dataset statistics")
