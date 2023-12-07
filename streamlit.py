@@ -51,7 +51,7 @@ def show_fig4():
     st.plotly_chart(pie_fig)
 
 
-#Uploading data
+#Uploading dataa
 df = pd.read_csv("train.csv")
 df["Total score"] = df[["Inflight wifi service","Departure/Arrival time convenient","Ease of Online booking","Gate location","Food and drink","Online boarding","Seat comfort","Inflight entertainment","On-board service","Leg room service","Baggage handling","Inflight service","Cleanliness","Checkin service"]].sum(axis=1)
 df = df.drop(df.columns[[0,1]],axis=1)
@@ -84,9 +84,5 @@ elif selected_option == "Pie Charts":
     show_fig4()
 else:
     st.write("Please choose a table from the sidebar.")
-
-    
-    
-    
 
     
