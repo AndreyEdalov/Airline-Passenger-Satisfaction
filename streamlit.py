@@ -3,20 +3,6 @@ import streamlit as st
 import plotly.express as px
 import plotly.graph_objects as go
 
-#Uploading data
-df = pd.read_csv("train.csv")
-df["Total score"] = df[["Inflight wifi service","Departure/Arrival time convenient","Ease of Online booking","Gate location","Food and drink","Online boarding","Seat comfort","Inflight entertainment","On-board service","Leg room service","Baggage handling","Inflight service","Cleanliness","Checkin service"]].sum(axis=1)
-df = df.drop(df.columns[[0,1]],axis=1)
-df.dropna(subset="Arrival Delay in Minutes",inplace=True)
-df.loc[df["Customer Type"] == "disloyal Customer", "Customer Type"] = "Disloyal Customer"
-
-#Making main article
-st.title('Airline Passenger Satisfaction')
-
-#Sidebar
-sidebar = st.sidebar
-selected_option = st.sidebar.selectbox('Select Visualization', ['Histograms', 'Age Distribution', 'Correlation', 'Pie Charts'])
-
 
 def show_fig1():
     selected_feature = st.selectbox('Select Feature:', ['Age', 'Flight Distance', "Total score","Class","Customer Type"])
@@ -63,10 +49,32 @@ def show_fig4():
         barmode="overlay"
     )
     st.plotly_chart(pie_fig)
-    
-    
 
-if selected_option == "Histograms":
+
+#Uploading data
+df = pd.read_csv("train.csv")
+df["Total score"] = df[["Inflight wifi service","Departure/Arrival time convenient","Ease of Online booking","Gate location","Food and drink","Online boarding","Seat comfort","Inflight entertainment","On-board service","Leg room service","Baggage handling","Inflight service","Cleanliness","Checkin service"]].sum(axis=1)
+df = df.drop(df.columns[[0,1]],axis=1)
+df.dropna(subset="Arrival Delay in Minutes",inplace=True)
+df.loc[df["Customer Type"] == "disloyal Customer", "Customer Type"] = "Disloyal Customer"
+
+#Making main article
+st.title('Airline Passenger Satisfaction')
+
+#Sidebar
+sidebar = st.sidebar
+selected_option = st.sidebar.selectbox('Select Visualization', ["Info",'Histograms', 'Age Distribution', 'Correlation', 'Pie Charts'])
+if selected_option == "Info":
+    st.markdown("Dataset contains an airline passenger satisfaction survey.")
+    st.subheader("Dataset statistics")
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        _value = df.shape[0]
+        st.metric(label="Number of passenger", value=_value)
+    with col2:
+        _value = df.shape[1]
+        st.metric(label="Number of columns", value=_value)  
+elif selected_option == "Histograms":
     show_fig1()
 elif selected_option == "Age Distribution":
     show_fig2()
