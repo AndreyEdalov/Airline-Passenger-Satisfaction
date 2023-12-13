@@ -52,7 +52,7 @@ def show_fig4():
 
 
 #Uploading dataa
-df = pd.read_csv("train.csv")
+df = pd.read_csv("Data/train.csv")
 df["Total score"] = df[["Inflight wifi service","Departure/Arrival time convenient","Ease of Online booking","Gate location","Food and drink","Online boarding","Seat comfort","Inflight entertainment","On-board service","Leg room service","Baggage handling","Inflight service","Cleanliness","Checkin service"]].sum(axis=1)
 df = df.drop(df.columns[[0,1]],axis=1)
 df.dropna(subset="Arrival Delay in Minutes",inplace=True)
